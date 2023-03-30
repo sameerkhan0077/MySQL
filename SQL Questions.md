@@ -115,8 +115,15 @@ select * from student where in (1,2);
 ```
 select studentid,sum(obtainedmarks) as highestmarks from result where testdate ='2022-02-15' and subject = "mathematics" group by studentid order by highestmarks desc limit 1;
 select * from student where studentid = 9;
+```
 
-###
+###  21.What is the total amount of fees paid by all students whose fathers' names start with the letter 'S'?
+```
+select * from student where fathers like  "%s%";
+
+select sum(amount) from fees where studentid in (1,2,3,4,7);
+
+```
 
 
   
