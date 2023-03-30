@@ -124,10 +124,59 @@ select * from student where fathers like  "%s%";
 select sum(amount) from fees where studentid in (1,2,3,4,7);
 
 ```
+### 22. What is the average marks obtained by all students for the subject of science?
+```
+select studentid from result where subject ="sciences";
 
+select avg(obtainedmarks) from result where studentid in (1,2,4,5,6);
 
+```
+
+### 23.What is the name of the student who paid the highest amount of fees for the year 2022?
+```
+select studentid,sum(amount) as totalfee from fees where month ='january' group by studentid order by totalfee desc limit 1 ;
+
+select * from student where studentid=9;
+ 
+ ```
+ ### 24.What is the name of the student who obtained the highest marks in the subject of English for the test date of '2022-03-15'?
+ ```
+select studentid,sum(obtainedmarks) as highmakrs from fees where date = '2022-03-15' group by amount ORDER BY highmakrs desc limit 1;
+
+select * from student where studentId = 10;
+
+```
   
+### 25.What is the name of the student who paid the second highest amount of fees for the subject of computer science?
 
+```
+select studentid, sum(amount) as highmaks FROM fees where subject = 'science' group BY studentid ORDER BY highmaks desc limit 2;
+
+select * from student where studentid = 8;
+
+```
+### 26.What is the name of the student who obtained the highest marks in the subject of mathematics and science combined?
+```
+select studentId,SUM(obtainedMarks) as highm FROM result WHERE subject = 'mathematics' and subject = 'science.js' group BY studentid ORDER BY highm desc LIMIT 1;
+
+select * FROM student WHERE studentid = 2;
+```
+
+### 27.What is the name of the student who paid the highest amount of fees for the month of March and the subject of English combined?
+
+```
+select studentid,sum(amount) as highfees FROM fees where subject = 'English' and month = 'march' GROUP BY studentId ORDER BY highfees desc LIMIT 1;
+
+select * from student where studentid = 5;
+
+```
+### 28.What is the name of the student who obtained the highest marks for the test date of '2022-04-15' in any subject?
+
+```
+select studentId, obtainedMarks as highmarks from result where date = '2022-04-15' group BY studentId ORDER by highmarks desc LIMIT 1;
+
+select * from student where studentid = 6;
+```
 
 
 
