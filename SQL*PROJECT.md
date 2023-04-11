@@ -117,14 +117,40 @@ CONSTRAINT FK_ETypeId foreign key(EmployeeTypeId) REFERENCES EmployeeType(Employ
 );
 ```
 
-#  CREATE TABLE EmployeeType
+#  create table EmployeeType
 ```sql
-CREATE TABLE `EmployeeType`(
+create table `EmployeeType`(
 EmployeeTId INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
 EmployeeType VARCHAR(155) NOT NULL
 );
 
 ```
+
+#  create table Salary
+```sql
+   create table `Salary`(
+`salaryId` INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+`amount` bigint not null,
+`month` varchar (215) not null,
+`EmployeeId` integer unsigned,
+CONSTRAINT fk_salaryEmploye
+foreign key(EmployeeId) REFERENCES Employee(EmployeeId)
+);
+```
+
+# create table InstitueExpenses
+```
+ create table`InstitueExpenses`(
+`IExpensesId` integer unsigned  not null primary key auto_increment,
+`expenseDetail` varchar (215) not null,
+`ExpensesAmount` bigint not null,
+`ExpenseDate` date 
+);
+
+```
+
+
+
 
 
 
