@@ -1,6 +1,11 @@
   # Create database
   
   ```sql
-CREATE DATABASE instituteMangement;
+CREATE DATABASE InstitueManagement;
 ```
+  # Use DataBase
+  
+  ```
+  use InstitueManagement
+  ```
  
