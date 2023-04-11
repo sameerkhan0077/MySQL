@@ -139,7 +139,7 @@ foreign key(EmployeeId) REFERENCES Employee(EmployeeId)
 ```
 
 # create table InstitueExpenses
-```
+```sql
  create table`InstitueExpenses`(
 `IExpensesId` integer unsigned  not null primary key auto_increment,
 `expenseDetail` varchar (215) not null,
