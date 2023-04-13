@@ -16,7 +16,7 @@ CREATE DATABASE InstitueManagement;
 `StudentId ` integer unsigned primary key not null auto_increment,
 `Name` varchar(255) not null,
 `FatherName` varchar(255) not null,
-`MobileNumber` bigint not null,
+`Mobile_Number` integer not null,
 `Email_Address` varchar(255) not null,
 `Gander` varchar(155) not null,
 `AdmissionDate` date not null
