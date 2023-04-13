@@ -14,11 +14,10 @@ CREATE DATABASE InstitueManagement;
   ```sql
   create table `students`(
 `StudentId ` integer unsigned primary key not null auto_increment,
-`Name` varchar(255) not null,
-`FatherName` varchar(255) not null,
+`Name` varchar(25) not null,
+`FatherName` varchar(25) not null,
 `Mobile_Number` integer not null,
-`Email_Address` varchar(255) not null,
-`Gander` varchar(155) not null,
+`Email_Address` varchar(25) unique  not null,
 `AdmissionDate` date not null
 );
 
@@ -28,9 +27,9 @@ CREATE DATABASE InstitueManagement;
   create table `Address`(
 `Id` integer unsigned primary key not null auto_increment,
 `PlotNo` integer not null,
-`Colont` varchar(255) not null,
-`city` varchar(255) not null,
-`state` varchar(255) not null,
+`Colont` varchar(25) not null,
+`city` varchar(25) not null,
+`state` varchar(25) not null,
 `PinCode` integer  not null,
 `studentid` int unsigned,
  CONSTRAINT FK_StudentId FOREIGN KEY (studentid)
@@ -41,9 +40,9 @@ CREATE DATABASE InstitueManagement;
 # create table fees
 ```sql
 create table `fees`(
-`Id` integer unsigned primary key not null auto_increment,
+`Id` integer primary key not null auto_increment,
 `amount`integer,
-`month`  varchar (155),
+`depositDate` date not null ,
 `Fstudentid` int unsigned ,
  CONSTRAINT FK_FStudentId FOREIGN KEY (Fstudentid)
 	REFERENCES students(studentId)
@@ -54,14 +53,11 @@ create table `fees`(
 
 ```sql
 create table `TestTable`(
-`Testid` integer unsigned primary key not null auto_increment,
-`Testname` varchar (215),
+`Testid` integer primary key auto_increment,
+`Testname` varchar (25) not null,
 `Passingmarks` integer not null,
 `Totalmarks` integer not null,
 `Testdate` date not null,
-`TStudentId` integer unsigned,
- CONSTRAINT FK_TStudentId FOREIGN KEY (TStudentId)
-	REFERENCES Students(Studentid)
 );
 ```
 
@@ -69,13 +65,13 @@ create table `TestTable`(
 
 ```sql
     create table `result`(
-`Resultid` integer unsigned  not null auto_increment ,
+`Resultid` integer  not null auto_increment primary key ,
 `TotalMarks` integer not null,
 `ObtainedMarks` integer not null,
-`Result` varchar(155) not null,
+`Result` enum('pass' , 'fail',
 `TestId` integer,
 `studentId` integer,
-primary key(Resultid,TestId,studentId)
+primary key(TestId,studentId)
 );
 ```
 #  create table Course 
@@ -83,14 +79,11 @@ primary key(Resultid,TestId,studentId)
  ```sql
  create table `Course`(
 `Id` integer unsigned primary key not null auto_increment,
-`Name` varchar(255) not null,
+`Name` varchar(25) not null,
 `fee` integer  not null,
 `StartDate` date not null,
 `EndDate` date not null,
 `Time` time not null,
-`Cstudentid` int unsigned ,
- CONSTRAINT FK_cStudentId FOREIGN KEY (Cstudentid)
-	REFERENCES students(studentId)
 );
 ```
 
@@ -98,7 +91,7 @@ primary key(Resultid,TestId,studentId)
 
 ```sql
 create table `studentCourse`(
-`studentCourseId` integer unsigned  not null auto_increment,
+`studentCourseId` integer unsigned not null auto_increment,
 `studentId` integer,
 `courseId` integer,
 primary key(studentCourseId,studentId,courseId)
@@ -110,9 +103,10 @@ primary key(studentCourseId,studentId,courseId)
 ```sql
 create table `Employee`(
 `EmployeeId` integer unsigned primary key  auto_increment ,
-`EmployeeName` varchar(215) not null,
+`EmployeeName` varchar(25) not null,
 `EmployeeType` integer ,
 `EmployeeTypeId` INTEGER unsigned,
+`Employee_Email` varchar(40) unique not null,
 CONSTRAINT FK_ETypeId foreign key(EmployeeTypeId) REFERENCES EmployeeType(EmployeeTId)
 );
 ```
@@ -120,8 +114,8 @@ CONSTRAINT FK_ETypeId foreign key(EmployeeTypeId) REFERENCES EmployeeType(Employ
 #  create table EmployeeType
 ```sql
 create table `EmployeeType`(
-EmployeeTId INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-EmployeeType VARCHAR(155) NOT NULL
+`EmployeeTId` INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+`EmployeeType` VARCHAR(20)
 );
 
 ```
@@ -131,7 +125,7 @@ EmployeeType VARCHAR(155) NOT NULL
    create table `Salary`(
 `salaryId` INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
 `amount` bigint not null,
-`month` varchar (215) not null,
+`date` date not null,
 `EmployeeId` integer unsigned,
 CONSTRAINT fk_salaryEmploye
 foreign key(EmployeeId) REFERENCES Employee(EmployeeId)
@@ -141,9 +135,9 @@ foreign key(EmployeeId) REFERENCES Employee(EmployeeId)
 # create table InstitueExpenses
 ```sql
  create table`InstitueExpenses`(
-`IExpensesId` integer unsigned  not null primary key auto_increment,
-`expenseDetail` varchar (215) not null,
-`ExpensesAmount` bigint not null,
+`I_ExpensesId` integer unsigned  not null primary key auto_increment,
+`expenseDetail` varchar (50) not null,
+`ExpensesAmount` integer  not null,
 `ExpenseDate` date 
 );
 
