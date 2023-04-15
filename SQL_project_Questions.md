@@ -32,7 +32,7 @@ select( select sum(amount) from salary where month(date)=3)+
 
 ### 8. Particular month me total income btao 
 ```sql
-select sum(amount) as totle from fees where month(depositDate)=4  group by month(depositDate) order by totle ;
+select sum(amount) from fees where month(depositDate)=4 ;
 ```
 
 ### 9. Total income aaj tak 
