@@ -16,6 +16,13 @@ SELECT s.name, SUM(amount) AS total FROM students s JOIN fees f ON s.studentid I
 ```sql
 SELECT COUNT(*), employeeName, employeeWork FROM employee GROUP BY employeeName, employeeWork;
 ```
+### 5. Kis employee ne kitni salary uthayi hai ab tak vo btao ya month wise
+```sql
+SELECT employeeName, SUM(amount) FROM employee JOIN salary ON employee.employeeId = salary.employeeId GROUP BY employeeName;
+```
+### 6.Vo sare students jo abi tak 1 b test me fail hue hai unka naam, subject, totalmarks, passingmarks, obtainedmarks btao   
+
+
 ### 7. Particular month ka kharcha btao. Kharche me tume salary and expenses dono add krne hai ?
 
 ```sql
