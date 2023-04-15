@@ -43,4 +43,8 @@ select sum(amount) as totle from fees;
 ```sql
 select sum(ExpensesAmount) as totaleExpenses from  InstitueExpenses;
 ```
-###
+### 11.Kis course me kitne students hai vo btane hai coursename startdate time totalstudents
+### 12. Vo course btana hai jisme sbse jyada income hui hai 
+### 13. Vo course btana hai jisme sbse kam income hui hai 
+### 14. Kaunsa course hai jisme sbse jyada students hai 
+### 15. Kaunsa course hai jisme sbse kam students hain
