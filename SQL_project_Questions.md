@@ -1,5 +1,39 @@
-### 1. Name of all students jinhone abi tak koi fees deposit ni ki
+### 1. Name of all students jinhone abi tak koi fees deposit ni ki?
 
 ```sql
 SELECT * FROM students s left join fees f ON  s.studentid =f.fstudentid where fstudentid is null;
 ```
+### 2. Sbse jyada fees kis student ne di hai. naam btao?
+```sql
+SELECT s.name, SUM(amount) AS total FROM students s JOIN fees f ON s.studentid IN (f.fstudentid) GROUP BY s.name ORDER BY total DESC LIMIT 1;;
+
+```
+### 3. Sbse jyada fees me 2nd number pr jo student hai uska naam btao ?
+```sql
+SELECT s.name, SUM(amount) AS total FROM students s JOIN fees f ON s.studentid IN (f.fstudentid)  GROUP BY s.name ORDER BY total DESC LIMIT 2;
+```
+### 4. Coaching me total kitne employees hain unka naam and designation/role show krvao?
+```sql
+SELECT COUNT(*), employeeName, employeeWork FROM employee GROUP BY employeeName, employeeWork;
+```
+### 7. Particular month ka kharcha btao. Kharche me tume salary and expenses dono add krne hai ?
+
+```sql
+select( select sum(amount) from salary where month(date)=3)+
+(select sum(ExpensesAmount) from InstitueExpenses where month(ExpenseDate)=4)as total_amount;
+```
+
+### 8. Particular month me total income btao 
+```sql
+select sum(amount) as totle from fees where month(depositDate)=4  group by month(depositDate) order by totle ;
+```
+
+### 9. Total income aaj tak 
+```sql
+select sum(amount) as totle from fees;
+```
+### 10. Total kharche aaj tak 
+```sql
+select sum(ExpensesAmount) as totaleExpenses from  InstitueExpenses;
+```
+###
