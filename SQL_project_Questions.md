@@ -63,9 +63,6 @@ select InstitueExpenses.expenseDetail, sum(ExpensesAmount) as max_Expenses from 
 
 
 ### 3. Employee list print krvani hai unki total paid salary ke descending order me
-Sajid Teacher 100000
-Shahrukh Teacher 80000
-Rehna Peon 20000
 ```sql
 select e.EmployeeName ,e.EmployeeWork,sum(amount) as totaleAmount from
  employee e join salary s on e.EmployeeId = s.EmployeeId group by e.EmployeeName ,e.EmployeeWork order by totaleAmount desc;
@@ -79,12 +76,10 @@ FOREIGN KEY(EmployeeId) REFERENCES Employee(Employeeid);
 ```
 
 ### 5. Kaunse course me kaunsa teacher pdhata hai uski detail print krvani hai 
-CourseName CourseTime TeacherName
+
 
  ### 6. Student list print krvani hai unki total paid fees ke descending order me
-Sajid Nodejs 100000
-Shahrukh JavaScript 80000
-Rehna HTML 20000
+
 ```sql
 select s.name ,sc.courseId,sum(amount)as totale from students s 
 join studentCourse sc on s.studentid = sc.studentid 
@@ -94,7 +89,6 @@ group by s.name ,sc.courseId order by totale desc;
 
 
 ### 7. Kisi b year ka total profit/loss btana hai
-Total fees - (total salary + total expenses)
 ```sql
 
 select (select sum(amount) from fees WHERE YEAR(months) )-(
@@ -103,9 +97,6 @@ select (select sum(amount) from fees WHERE YEAR(months) )-(
 ```
 
 ### 8. Student count list print krvani hai unki total batch count ke descending order me
-Nodejs 10:00PM 10/01/2023  10/07/2023 30
-JS 9:00PM 10/01/2023  10/07/2023 20
-HTML 10:00AM 10/01/2023  10/07/2023 40
 
 ```sql
 SELECT Course.name, Course.time,Course.StartDate,Course.EndDate,COUNT(students.studentId) AS total_student FROM students 
