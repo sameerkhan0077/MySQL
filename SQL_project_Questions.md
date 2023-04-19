@@ -114,8 +114,7 @@ join students on Address.studentid =students.studentid  GROUP BY  Address.pincod
 
 ### 11. Ek view result pr bnana hai 
 
-### 12. Vo student jinhone koi b fees jama ni krayi hai unko delete kr dena hai student table se 
-Aur iske child records Address, Result tables me hai vo vha se b delete krna hai 
+### 12. Vo student jinhone koi b fees jama ni krayi hai unko delete kr dena hai student table se Aur iske child records Address, Result tables me hai vo vha se b delete krna hai 
 ```sql
 SELECT * FROM students s WHERE s.studentId NOT IN (SELECT fstudentId FROM Fees);
 DELETE FROM result WHERE studentId in (6,9,10 );
