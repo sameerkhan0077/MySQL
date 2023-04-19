@@ -48,6 +48,9 @@ select sum(ExpensesAmount) as totaleExpenses from  InstitueExpenses;
 ### 13. Vo course btana hai jisme sbse kam income hui hai 
 ### 14. Kaunsa course hai jisme sbse jyada students hai 
 ### 15. Kaunsa course hai jisme sbse kam students hain
+
+#   # Test 2
+
 ### 1.Kaunsa course hai jisme koi admission ni hua hai
 ```sql
 select c.name from course c left  join studentCourse s on c.id =s.courseId  where s.courseId  is null  group by c.name ;
