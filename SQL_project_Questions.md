@@ -5,7 +5,7 @@ select * from student where studentid  not in(select distinct fstudentid from fe
 ```
 ### 2. Sbse jyada fees kis student ne di hai. naam btao?
 ```sql
-SELECT s.name, SUM(amount) AS total FROM students s JOIN fees f ON s.studentid IN (f.fstudentid) GROUP BY s.name ORDER BY total DESC LIMIT 1;;
+SELECT s.name, SUM(amount) AS total FROM students s JOIN fees f ON  s.studentid = f.fstudentid GROUP BY s.name ORDER BY total DESC LIMIT 1;;
 
 ```
 ### 3. Sbse jyada fees me 2nd number pr jo student hai uska naam btao ?
