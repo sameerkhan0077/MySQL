@@ -10,16 +10,15 @@ SELECT s.name, SUM(amount) AS total FROM students s JOIN fees f ON  s.studentid 
 ```
 ### 3. Sbse jyada fees me 2nd number pr jo student hai uska naam btao ?
 ```sql
-SELECT s.name, SUM(amount) AS total FROM students s JOIN fees f ON s.studentid IN (f.fstudentid)  GROUP BY s.name ORDER BY total DESC LIMIT 2;
+SELECT s.name, SUM(amount) AS total FROM students s JOIN fees f ON  s.studentid = f.fstudentid  GROUP BY s.name ORDER BY total DESC LIMIT 1,1;
 ```
 ### 4. Coaching me total kitne employees hain unka naam and designation/role show krvao?
 ```sql
-SELECT COUNT(*), employeeName, employeeWork FROM employee GROUP BY employeeName, employeeWork;
+SELECT  employeeName, employeeWork FROM employee GROUP BY employeeName, employeeWork;
 ```
 ### 5. Kis employee ne kitni salary uthayi hai ab tak vo btao ya month wise
 ```sql
-SELECT employeeName, SUM(amount) FROM employee JOIN salary ON employee.employeeId = salary.employeeId GROUP BY employeeName;
-```
+                                                         ```
 ### 6.Vo sare students jo abi tak 1 b test me fail hue hai unka naam, subject, totalmarks, passingmarks, obtainedmarks btao  
 ```sql
 SELECT s.name, t.Testname, r.TotalMarks, t.Passingmarks, r.ObtainedMarks, 
@@ -47,16 +46,37 @@ select sum(amount) as totle from fees;
 ```
 ### 10. Total kharche aaj tak 
 ```sql
-select sum(ExpensesAmount) as totaleExpenses from  InstitueExpenses;
+	select (select sum(amount) from Salary)+ (select sum(ExpensesAmount)from  InstitueExpenses) as totaleExpenses;
 ```
 ### 11.Kis course me kitne students hai vo btane hai coursename startdate time totalstudents
 ```sql
+select  count(sc.studentId) as totelstudent ,sc.courseId ,c.Name ,c.startDate ,c.EndDate,time from studentcourse sc join course c on sc.courseid = c.id group by courseid ;
+```
 
 ### 12. Vo course btana hai jisme sbse jyada income hui hai 
+```sql
+SELECT course.id as courseid,course.name, SUM(amount) AS total_amount FROM studentCourse 
+JOIN Fees ON Fees.fstudentId = studentCourse.studentId 
+JOIN course ON course.id = studentCourse.courseId 
+GROUP BY course.id, course.name ORDER BY total_amount DESC LIMIT 1;
+```
 ### 13. Vo course btana hai jisme sbse kam income hui hai 
+```sql
+SELECT course.id as courseid,course.name, SUM(amount) AS total_amount FROM studentCourse 
+JOIN Fees ON Fees.fstudentId = studentCourse.studentId 
+JOIN course ON course.id = studentCourse.courseId 
+GROUP BY course.id, course.name ORDER BY total_amount LIMIT 1;
+```
 ### 14. Kaunsa course hai jisme sbse jyada students hai 
+```sql
+select  count(sc.studentid) as totelstudent ,sc.courseid   from studentcourse sc group by sc.courseid order by totelstudent desc limit 1;
+select name from course where id = 2 ;
+```
 ### 15. Kaunsa course hai jisme sbse kam students hain
-
+```sql
+select  count(sc.studentid) as totelstudent ,sc.courseid   from studentcourse sc group by sc.courseid order by totelstudent  limit 1;
+select name from course where id = ? ;
+```
 #   # Test 2
 
 ### 1.Kaunsa course hai jisme koi admission ni hua hai
