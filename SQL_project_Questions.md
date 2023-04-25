@@ -196,3 +196,105 @@ JOIN Fee f on f.studentId = s.studentId
 JOIN salary sa ON sa.employeeId = e.employeeId
 GROUP BY e.employeeName, c.courseName, c.startDate, c.endDate, e.employeeWork;
 ```
+
+#   # Test 3
+
+### 1. Student ka count print krvana hai desc order me unke city ke according. for example
+totalstudents cityname
+25 Jaipur 
+20 Nagaur
+```sql
+select count(s.studentid) as totalstudents ,ad.city from students s join address ad on s.studentid = ad.studentid 
+group by ad.city order by totalstudents desc;
+```
+
+### 2. Kisi student ki sare months me kitni fees aayi hai vo btani hai sare months ki ab tak 
+StudentName MonthName Fees 
+Sajid Feb, 2022 2000
+Sajid March, 2022 1000
+Sajid April 0
+Sajid May 1000
+Agar kisi month me koi fees ni aayi hai to 0 dhikana hai 
+
+```sql
+ SELECT s.name, YEAR(f.depositDate) as Year,MONTH(f.depositDate) as month , sum(f.amount) from  fees f 
+ join students s on f.fstudentid = s.studentid where f.fstudentid=3 group by name,year,month;
+    ```     
+    
+### 3.Kisi particular test me total kitne students pass fail hue hai vo btana hai 
+TestId TestName TotalPass TotalFail
+1 Nodejs 10 5
+2 JS 20 10
+```sql
+SELECT ts.Testname,r.Result, COUNT(r.Result) AS total_stu
+FROM result r JOIN testtable ts ON ts.testId = r.TestId GROUP BY ts.Testname, r.Result;
+```
+### 4. Kisi particular month me total kitne test hue hai vo btane hai 
+MonthName TotalTests
+May 20
+June 10
+
+```sql
+SELECT MONTH(Testdate) AS monthName, COUNT(MONTH(testDate)) AS totalTest FROM testtable GROUP BY monthName;
+```
+
+### 5. Kisi particular designation pr kitne employees hai vo btana hai 
+
+Designation Count
+Teacher    10
+Peon 2
+Receptionist 1
+
+```sql
+SELECT EmployeeWork, COUNT(EmployeeWork) AS TotleEmpl FROM employee GROUP BY employeeWork;
+```
+
+### 6. Kisi particular designation ke employees ki total salary particular month me kitni hai vo btana hai 
+Designation Month TotalSalary
+Teacher June 25000
+Peon June 10000
+Receptionist June 5000
+
+### 7. Employees ki totalsalary ko desc order me btao with name 
+
+EmployeeName totalsalary
+
+Sajid  200000
+Shahrukh 120000
+Raja 80000
+
+```sql
+SELECT em.EmployeeId, em.EmployeeName, SUM(s.amount) AS totalSalary FROM employee em
+JOIN salary s ON s.EmployeeId = em.EmployeeId GROUP BY em.EmployeeId, em.EmployeeName 
+ORDER BY totalSalary DESC;
+```
+### 8. Ek new table bnani hai jisme ye columns honge 
+TableName : TeacherSalaryRecord
+SalaryRecordId TeacherId(foreignkey)   TotalSalary 
+
+```sql
+CREATE TABLE TeacherSalaryRecord (
+`SalaryRecordId` INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+`TeacherId` INTEGER UNSIGNED,
+`TotalSalary` INTEGER UNSIGNED NOT NULL,
+FOREIGN KEY (TeacherId) REFERENCES employee(employeeId)
+);
+```
+
+### 9. Ek trigger bnana hai. Aur jab b salary table me kisi b employee ke liye entry hogi
+to TeacherSalaryRecord table me uski totalsalary update hogi 
+
+Salary  : Sajid 10000
+
+TeacherSalaryRecord : Sajid 10000
+
+Salary Sajid 20000
+TeacherSalaryRecord : Sajid 30000
+
+### 10. Student table me studnetname, fathername pr index bnani hai
+```sql
+CREATE INDEX Studen_index ON students (Name, fatherName);
+
+```
+
+
