@@ -104,6 +104,10 @@ FOREIGN KEY(EmployeeId) REFERENCES Employee(Employeeid);
 ```
 
 ### 5. Kaunse course me kaunsa teacher pdhata hai uski detail print krvani hai 
+```sql
+SELECT * FROM course;
+SELECT Name, Time, EmployeeName FROM course 	JOIN employee ON course.employeeId = employee.employeeId;
+```
 
 
  ### 6. Student list print krvani hai unki total paid fees ke descending order me
@@ -176,6 +180,14 @@ DELETE FROM result WHERE studentId in (6,9,10 );
 SELECT YEAR(institueexpenses.ExpenseDate) AS Year, MONTH(institueexpenses.ExpenseDate) AS month, SUM(ExpensesAmount) AS total_expense from institueexpenses GROUP BY Year,Month;
 ```
 ### 14. Kaunse teacher ke batch ke students ki performance sbse best hai 
+```sql
+SELECT e.employeeId, e.employeeName, s.studentName, c.courseName, AVG(r.obtainedMarks) AS marks 
+FROM course c JOIN employee e ON c.teacherId = e.employeeId 
+JOIN studentCourse sc ON sc.courseId = c.courseId
+JOIN student s ON s.studentId = sc.studentId
+JOIN result r ON r.studentId = s.studentId
+GROUP BY e.employeeId, e.employeeName, s.studentName, c.courseName ORDER BY marks DESC LIMIT 1; 
+```
 
 ### 15. ek view bnana hai
 - TeacherName 
@@ -219,9 +231,8 @@ Agar kisi month me koi fees ni aayi hai to 0 dhikana hai
 ```sql
  SELECT s.name, YEAR(f.depositDate) as Year,MONTH(f.depositDate) as month , sum(f.amount) from  fees f 
  join students s on f.fstudentid = s.studentid where f.fstudentid=3 group by name,year,month;
-    ```     
-    
-### 3.Kisi particular test me total kitne students pass fail hue hai vo btana hai 
+  ```     
+ ### 3.Kisi particular test me total kitne students pass fail hue hai vo btana hai 
 TestId TestName TotalPass TotalFail
 1 Nodejs 10 5
 2 JS 20 10
